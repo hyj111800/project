@@ -243,5 +243,10 @@ def qr_import():
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "5000"))
     print(f"🚀 Flask Server Running on port {port}")
-    db.create_all()
+
+    # ✅ Flask app context로 DB 초기화
+    with app.app_context():
+        db.create_all()
+
     app.run(host="0.0.0.0", port=port)
+
